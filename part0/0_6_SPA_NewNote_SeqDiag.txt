@@ -1,0 +1,37 @@
+title SPA New Note
+
+note left of User:
+User already opened the page 
+"https://studies.cs.helsinki.fi/exampleapp/spa"
+end note 
+
+User->Browser:Enter the text in the note field
+User->Browser:Click on the Submit button
+
+note over Browser:
+Creates a new note element with the text 
+that user entered and the current date
+end note
+
+note over Browser:
+Adds the new note to the notes array 
+end note
+
+note over Browser:
+Cleans the note field in the form
+end note
+
+note over Browser:
+Redraws the notes
+end note
+
+note over Browser:
+Transform new note element into json
+end note
+
+Browser->Server: HTTP POST json note element to https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over Server:
+Add a json note element to the notes data
+end note 
+

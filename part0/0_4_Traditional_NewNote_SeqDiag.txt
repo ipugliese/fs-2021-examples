@@ -1,0 +1,36 @@
+title New Note
+
+note left of User:
+User already opened the page 
+"https://studies.cs.helsinki.fi/exampleapp/notes"
+end note 
+
+User->Browser:Enter the text in the note field
+User->Browser:Click on the Submit button
+Browser->Server: HTTP POST Form data to https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over Server:
+Add a new note and date to the notes data
+end note 
+
+Server->Browser: HTTP 302 redirect request to https://studies.cs.helsinki.fi/exampleapp/notes
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: HTML-code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: main.js
+
+note over Browser:
+Browser executes js-code
+that requests JSON data from server 
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: data.json which includes the new note [ ... { content: "Nueva Nota", date: "2021-11-24T18:57:17.873Z" }]
+
+note over Browser:
+Browser executes the event handler
+that renders notes to display
+end note
