@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const Header = ({ course }) => (
+  <div>
+    <p>Nombre: {course.name}</p>
+  </div>
+) 
+
 const Course = ({ course }) => (
   <div>
     <Header course={course} />
@@ -10,7 +16,7 @@ const Course = ({ course }) => (
 const App = () => {
   const course = {
     // ...
-    //name: 'Ivan',
+    name: 'Ivan',
   }
 
   return (
