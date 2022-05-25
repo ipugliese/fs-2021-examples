@@ -1,0 +1,24 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "Simple web project using Node.js and Chrome V8",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "develop": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Hellow",
+    "World"
+  ],
+  "author": "Ivan Pugliese",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
