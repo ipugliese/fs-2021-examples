@@ -1,3 +1,5 @@
+// node mongo.js <password>
+
 const mongoose = require('mongoose')
 
 if (process.argv.length < 3) {
@@ -7,7 +9,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://root:1234.abcd@cluster0.pdjwt.mongodb.net/note-app?retryWrites=true&w=majority`
+const url = `mongodb+srv://root:${password}@cluster0.pdjwt.mongodb.net/note-app?retryWrites=true&w=majority`
 
 mongoose.connect(url)
 
