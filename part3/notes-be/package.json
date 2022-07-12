@@ -10,7 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../notes-fe && npm run build --prod && cp -r build ../notes-be/",
     "deploy": "git push heroku main",
+<<<<<<< Updated upstream
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
+=======
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",    
+>>>>>>> Stashed changes
     "logs:prod": "heroku logs --tail"
   },
   "keywords": [

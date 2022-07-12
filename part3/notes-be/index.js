@@ -7,7 +7,10 @@ const Note = require('./models/note')
 const app = express()
 
 app.use(express.static("build"))
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 app.use(express.json())
 app.use(cors())
 app.use(morgan('tiny'))
@@ -111,7 +114,12 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
+<<<<<<< Updated upstream
 const PORT = process.env.PORT
+=======
+//const PORT = process.env.PORT || 3001
+const PORT = 3001
+>>>>>>> Stashed changes
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

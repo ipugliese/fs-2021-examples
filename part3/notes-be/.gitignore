@@ -1,7 +1,12 @@
+<<<<<<< Updated upstream
 node_modules/
 .idea/
 .env
 
+=======
+#
+.gitx
+>>>>>>> Stashed changes
 # Logs
 logs
 *.log
