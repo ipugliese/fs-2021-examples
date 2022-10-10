@@ -1,7 +1,0 @@
-PUT http://localhost:3001/api/notes/6342e5738d607a69a124738f
-Content-Type: application/json
-
-{
-    "content": "HTML is easy 2022-10-10T13:00:00",
-    "important": true
-}
