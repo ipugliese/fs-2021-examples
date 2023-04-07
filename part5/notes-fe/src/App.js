@@ -77,6 +77,7 @@ const App = () => {
         username, password,
       })
       setUser(user)
+      noteService.setToken(user.token)
       setUsername('')
       setPassword('')
       setErrorMessage('Logged!!')
@@ -84,6 +85,7 @@ const App = () => {
         setErrorMessage(null)
       }, 5000)
     } catch (exception) {
+      console.log('exception: ', exception)
       setErrorMessage('Wrong credentials')
       setTimeout(() => {
         setErrorMessage(null)
