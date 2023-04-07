@@ -4,3 +4,6 @@
 [submodule "part4/notes-be"]
 	path = part4/notes-be
 	url = https://github.com/ipugliese/notes-be.git
+[submodule "part5/notes-be"]
+	path = part5/notes-be
+	url = https://github.com/ipugliese/notes-be.git
