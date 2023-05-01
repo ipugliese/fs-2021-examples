@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 import Note from './components/Note'
 import Notification from './components/Notification'
 import Footer from './components/Footer'
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/LoginForm'
+import Toggable from './components/Toggable'
+import NoteForm from './components/NoteForm'
 import noteService from './services/notes'
 import loginService from './services/login'
 
@@ -15,7 +17,6 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  const [loginVisible, setLoginVisible] = useState(false)
 
   useEffect(() => {
     noteService.getAll()
@@ -114,36 +115,22 @@ const App = () => {
     }, 5000)
   }
 
-  const displayValue = (show) => (show ? '' : 'none')
-
   const loginForm = () => {
-    const loginButtonStyle = { display: displayValue(!loginVisible)}
-    const loginFormStyle = { display: displayValue(loginVisible)}
-
-    console.log('loginButtonStyle: ', loginButtonStyle)
-    console.log('loginFormStyle: ', loginFormStyle)
 
     return (
-      <div>
-        <div style={loginButtonStyle}>
-          <button onClick={() => setLoginVisible(true)}>log in</button>
-        </div>
-        <div style={loginFormStyle}>
+      <Toggable buttonLabel='login'>
           <LoginForm 
             fields={{username: {value: username, setValue: setUsername}, password: {value: password, setValue: setPassword}}}
             handleSubmit={handleLogin}
           />
-          <button onClick={() => setLoginVisible(false)}>cancel</button>
-        </div>
-      </div>
+      </Toggable>
     )
   }
 
   const noteForm = () => (
-    <form onSubmit={addNote}>
-      <input value={newNote} onChange={handleNoteChange}/>
-      <button type="submit">save</button>
-    </form>
+    <Toggable buttonLabel={'New Note'}>
+      <NoteForm fields={{note: {value: newNote, setValue: handleNoteChange}}} onSubmit={addNote} />
+    </Toggable>
   )
 
   return (
