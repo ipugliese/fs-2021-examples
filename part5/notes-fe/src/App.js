@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Note from './components/Note'
 import Notification from './components/Notification'
 import Footer from './components/Footer'
+import LoginForm from './components/LoginForm';
 import noteService from './services/notes'
 import loginService from './services/login'
 
@@ -14,6 +15,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
+  const [loginVisible, setLoginVisible] = useState(false)
 
   useEffect(() => {
     noteService.getAll()
@@ -82,12 +84,8 @@ const App = () => {
     event.preventDefault()
     console.log('logging in with', username, password)
     try {
-      const user = await loginService.login({
-        username, password,
-      })
-      window.localStorage.setItem(
-        'loggedNoteappUser', JSON.stringify(user)
-      )
+      const user = await loginService.login({username, password,})
+      window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
       setUser(user)
       noteService.setToken(user.token)
       setUsername('')
@@ -105,29 +103,41 @@ const App = () => {
     }
   }
 
-  const loginForm = () => (
-    <form onSubmit={handleLogin}>
+  const handleLogout = (event) => {
+    event.preventDefault()
+    window.localStorage.removeItem('loggedNoteappUser')
+    setUser(null)
+    noteService.setToken(null)
+    setErrorMessage('Log out!!')
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
+  }
+
+  const displayValue = (show) => (show ? '' : 'none')
+
+  const loginForm = () => {
+    const loginButtonStyle = { display: displayValue(!loginVisible)}
+    const loginFormStyle = { display: displayValue(loginVisible)}
+
+    console.log('loginButtonStyle: ', loginButtonStyle)
+    console.log('loginFormStyle: ', loginFormStyle)
+
+    return (
       <div>
-        username
-          <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
+        <div style={loginButtonStyle}>
+          <button onClick={() => setLoginVisible(true)}>log in</button>
+        </div>
+        <div style={loginFormStyle}>
+          <LoginForm 
+            fields={{username: {value: username, setValue: setUsername}, password: {value: password, setValue: setPassword}}}
+            handleSubmit={handleLogin}
+          />
+          <button onClick={() => setLoginVisible(false)}>cancel</button>
+        </div>
       </div>
-      <div>
-        password
-          <input
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
-    </form>
-  )
+    )
+  }
 
   const noteForm = () => (
     <form onSubmit={addNote}>
@@ -146,6 +156,7 @@ const App = () => {
           loginForm() :
           <div>
             <p>User: {user.name}</p>
+            <button onClick={handleLogout}>log out</button>
             {noteForm()}
           </div>
       }
