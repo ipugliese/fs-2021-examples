@@ -10,3 +10,6 @@
 [submodule "part5/notes-fe"]
 	path = part5/notes-fe
 	url = https://github.com/ipugliese/notes-fe
+[submodule "part6/counter-redux"]
+	path = part6/counter-redux
+	url = https://github.com/ipugliese/counter-redux
