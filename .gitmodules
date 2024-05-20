@@ -13,3 +13,6 @@
 [submodule "part6/counter-redux"]
 	path = part6/counter-redux
 	url = https://github.com/ipugliese/counter-redux
+[submodule "part6/notes-fex"]
+	path = part6/notes-fex
+	url = https://github.com/ipugliese/notes-fex
